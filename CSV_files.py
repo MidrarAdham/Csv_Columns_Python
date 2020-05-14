@@ -1,48 +1,13 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[86]:
-
-
 import pandas as pd
 import numpy as np
-#df = pd.read_csv("test.csv", index_col = 0)
-household = pd.read_csv(r'/Users/midrar/Desktop/PSU/EXCEL_TO_CSV/test2.csv', index_col = 0)
-household
 
 
-# In[128]:
-
-
-i = 1
-k = 0
-j = 0
-for row in household:
-    d = household.iloc[:, k:i]
-    print (d)
-    i = i + 1
-    k = k + 1
-    Path = '/Users/midrar/Desktop/PSU/EXCEL_TO_CSV/converted/'+str(j)+'.csv'
-    d.to_csv(Path)
-    j = j + 1
-    if i == 6:# and k == 1:
-        break
-
-
-# In[101]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
+household = pd.read_csv(r'/home/deras/Desktop/csv_parsing_new/Load_Profile.csv',index_col = False,dtype='unicode',delimiter = ',')
+#print (household)
+col_first = household.columns[0]
+j = 0;
+for i in range(1, household.shape[1]):
+    col_i = household.columns[i]
+    Path = '/home/deras/Desktop/csv_parsing_new/Load_Profile'+str(j)+'.csv'
+    household.loc[:, [col_first, col_i]].to_csv((Path), index=False)
+    j = 1 + j
